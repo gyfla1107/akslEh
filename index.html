@@ -266,7 +266,7 @@
             //console.log(`const GAME_DATA = ${JSON.stringify(result, null, 2)};`);
             console.log('\n=== 2단계: 각 참가자에게 비밀번호를 개별 전달하세요 ===');
             Object.keys(result).forEach(password => {
-                console.log(`${result[password].person}: ${password}`);
+                console.log(`${result[password].person}: ${password}`);  // 여기 수정!
             });
             //console.log('\n=== 3단계: generateInitialData() 호출을 주석 처리하세요 ===');
         }
@@ -314,6 +314,7 @@
     </script>
 </body>
 </html>
+
 
 
 
