@@ -200,17 +200,47 @@
 
         // 여기에 생성된 데이터를 붙여넣으세요
         const GAME_DATA = {
-            'ABC123': { person: '철수', manitto: '영희' },
-            'DEF456': { person: '영희', manitto: '민수' },
-            'GHI789': { person: '민수', manitto: '지은' },
-            'JKL012': { person: '지은', manitto: '현우' },
-            'MNO345': { person: '현우', manitto: '수진' },
-            'PQR678': { person: '수진', manitto: '동욱' },
-            'STU901': { person: '동욱', manitto: '서연' },
-            'VWX234': { person: '서연', manitto: '준호' },
-            'YZA567': { person: '준호', manitto: '미나' },
-            'BCD890': { person: '미나', manitto: '철수' }
-        };
+  "FEMUBP": {
+    "person": "부쟝",
+    "manitto": "민경이"
+  },
+  "PYYTDY": {
+    "person": "효림",
+    "manitto": "부쟝"
+  },
+  "BYVJDR": {
+    "person": "혜교",
+    "manitto": "서수민"
+  },
+  "2M9LXW": {
+    "person": "짜라니",
+    "manitto": "효림"
+  },
+  "A2H4S5": {
+    "person": "다빈이",
+    "manitto": "혜교"
+  },
+  "CWLTPJ": {
+    "person": "디벳",
+    "manitto": "짜라니"
+  },
+  "7DTXKQ": {
+    "person": "민경이",
+    "manitto": "다빈이"
+  },
+  "2CZB7X": {
+    "person": "서수민",
+    "manitto": "혬씨"
+  },
+  "R46L38": {
+    "person": "델리",
+    "manitto": "디벳"
+  },
+  "SW7RLK": {
+    "person": "혬씨",
+    "manitto": "델리"
+  }
+};
 
         // API 함수
         function getManittoByPassword(password) {
@@ -262,17 +292,17 @@
                 };
             });
 
-            console.log('=== 1단계: 아래 코드를 복사하여 GAME_DATA를 교체하세요 ===\n');
-            console.log(`const GAME_DATA = ${JSON.stringify(result, null, 2)};`);
+            //console.log('=== 1단계: 아래 코드를 복사하여 GAME_DATA를 교체하세요 ===\n');
+            //console.log(`const GAME_DATA = ${JSON.stringify(result, null, 2)};`);
             console.log('\n=== 2단계: 각 참가자에게 비밀번호를 개별 전달하세요 ===');
             Object.keys(result).forEach(password => {
                 console.log(`${result[password].person}: ${password}`);
             });
-            console.log('\n=== 3단계: generateInitialData() 호출을 주석 처리하세요 ===');
+            //console.log('\n=== 3단계: generateInitialData() 호출을 주석 처리하세요 ===');
         }
 
         // 주석을 해제하고 한 번만 실행하여 데이터 생성
-         generateInitialData();
+         //generateInitialData();
 
         // ========================================
         // FRONTEND: UI 로직
@@ -314,5 +344,6 @@
     </script>
 </body>
 </html>
+
 
 
