@@ -4,16 +4,16 @@
 
 // 참가자 이름 설정 (10명)
 const PARTICIPANTS = [
-    '철수',
-    '영희',
-    '민수',
-    '지은',
-    '현우',
-    '수진',
-    '동욱',
-    '서연',
-    '준호',
-    '미나'
+    '효림',
+    '혜교',
+    '예은',
+    '혜원',
+    '다빈',
+    '디벳',
+    '민경',
+    '수민',
+    '수현',
+    '혜민'
 ];
 
 // 여기에 생성된 비밀번호와 마니또 정보를 입력하세요
@@ -73,8 +73,8 @@ function generateInitialData() {
         };
     });
 
-    console.log('=== 1단계: 아래 코드를 복사하여 GAME_DATA를 교체하세요 ===\n');
-    console.log(`const GAME_DATA = ${JSON.stringify(result, null, 2)};`);
+   //console.log('=== 1단계: 아래 코드를 복사하여 GAME_DATA를 교체하세요 ===\n');
+    //console.log(`const GAME_DATA = ${JSON.stringify(result, null, 2)};`);
     console.log('\n=== 2단계: 각 참가자에게 비밀번호를 개별 전달하세요 ===');
     Object.keys(result).forEach(password => {
         console.log(`${result[password].person}: ${password}`);
@@ -84,4 +84,5 @@ function generateInitialData() {
 }
 
 // ⬇️ 주석을 해제하고 한 번만 실행
+
 generateInitialData();
