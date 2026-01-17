@@ -85,4 +85,5 @@ function generateInitialData() {
 
 // ⬇️ 주석을 해제하고 한 번만 실행
 
-generateInitialData();
+//generateInitialData();
+
