@@ -182,8 +182,138 @@
         </div>
     </div>
 
-    <script src="./backend.js"></script>
-    <script src="./frontend.js"></script>
+    <script>
+        // ========================================
+        // BACKEND: 데이터 관리
+        // ========================================
+
+        // 참가자 이름 설정 (10명)
+        const PARTICIPANTS = [
+            '철수',
+            '영희',
+            '민수',
+            '지은',
+            '현우',
+            '수진',
+            '동욱',
+            '서연',
+            '준호',
+            '미나'
+        ];
+
+        // 여기에 생성된 데이터를 붙여넣으세요
+        const GAME_DATA = {
+            'ABC123': { person: '철수', manitto: '영희' },
+            'DEF456': { person: '영희', manitto: '민수' },
+            'GHI789': { person: '민수', manitto: '지은' },
+            'JKL012': { person: '지은', manitto: '현우' },
+            'MNO345': { person: '현우', manitto: '수진' },
+            'PQR678': { person: '수진', manitto: '동욱' },
+            'STU901': { person: '동욱', manitto: '서연' },
+            'VWX234': { person: '서연', manitto: '준호' },
+            'YZA567': { person: '준호', manitto: '미나' },
+            'BCD890': { person: '미나', manitto: '철수' }
+        };
+
+        // API 함수
+        function getManittoByPassword(password) {
+            return GAME_DATA[password] || null;
+        }
+
+        // 초기 데이터 생성 헬퍼
+        function generateInitialData() {
+            function generateRandomPassword() {
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+                let password = '';
+                for (let i = 0; i < 6; i++) {
+                    password += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return password;
+            }
+
+            function assignManitto(names) {
+                let assignments;
+                let isValid = false;
+                let attempts = 0;
+
+                while (!isValid && attempts < 1000) {
+                    const shuffled = [...names].sort(() => Math.random() - 0.5);
+                    assignments = names.map((name, idx) => ({
+                        person: name,
+                        manitto: shuffled[idx]
+                    }));
+                    isValid = assignments.every(a => a.person !== a.manitto);
+                    attempts++;
+                }
+                return assignments;
+            }
+
+            const assignments = assignManitto(PARTICIPANTS);
+            const usedPasswords = new Set();
+            const result = {};
+
+            assignments.forEach(assignment => {
+                let password;
+                do {
+                    password = generateRandomPassword();
+                } while (usedPasswords.has(password));
+                
+                usedPasswords.add(password);
+                result[password] = {
+                    person: assignment.person,
+                    manitto: assignment.manitto
+                };
+            });
+
+            console.log('=== 1단계: 아래 코드를 복사하여 GAME_DATA를 교체하세요 ===\n');
+            console.log(`const GAME_DATA = ${JSON.stringify(result, null, 2)};`);
+            console.log('\n=== 2단계: 각 참가자에게 비밀번호를 개별 전달하세요 ===');
+            Object.keys(result).forEach(password => {
+                console.log(`${result[password].person}: ${password}`);
+            });
+            console.log('\n=== 3단계: generateInitialData() 호출을 주석 처리하세요 ===');
+        }
+
+        // 주석을 해제하고 한 번만 실행하여 데이터 생성
+        // generateInitialData();
+
+        // ========================================
+        // FRONTEND: UI 로직
+        // ========================================
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (!password) {
+                errorMsg.textContent = '비밀번호를 입력하세요!';
+                return;
+            }
+
+            const data = getManittoByPassword(password);
+            
+            if (data) {
+                showResult(data);
+                errorMsg.textContent = '';
+                document.getElementById('passwordInput').value = '';
+            } else {
+                errorMsg.textContent = '잘못된 비밀번호입니다!';
+            }
+        }
+
+        function showResult(data) {
+            document.getElementById('welcomeMsg').textContent = `${data.person}님, 환영합니다! 👋`;
+            document.getElementById('manittoName').textContent = data.manitto;
+            
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('resultSection').classList.add('active');
+        }
+
+        function logout() {
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('resultSection').classList.remove('active');
+            document.getElementById('errorMsg').textContent = '';
+        }
+    </script>
 </body>
 </html>
-
